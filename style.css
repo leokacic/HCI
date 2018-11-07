@@ -7,10 +7,30 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
 }
+.header{
+    justify-content: center;
+    display: block; 
+    height: 60px; 
+    text-align:center; 
+    line-height:50px;
+    border: 2px solid green;
+}
+.footer{
+    display: block; 
+    height: 60px; 
+    text-align:center; 
+    line-height:50px;
+    background-color: black;
+}
+.footer>p{
+    color: white;
+}
 .site {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    width: 100vw;
+    min-height: 100vh;
 }
 .item {
     color: var(--main-color, black);
@@ -18,6 +38,9 @@ body {
     text-align: center;
     padding: var(--padding, 0px);
     margin-bottom: 10px;
+}
+.item:last-child {
+    margin-bottom: 0;
 }
 .main {
     display: flex;
@@ -30,81 +53,97 @@ body {
 .SlikaNovosti{
     width: 100%;
     height: 100%;
-    max-width:150px;
-    max-height:150px;
+    max-width: 500px;
+    max-height: 500px;
+}
+.PrvaVijest{
+    text-align: left;
+    margin-bottom: 10px;
+}
+.DrugaVijest{ 
+    text-align: left;
+    margin-bottom: 10px;
+}
+.PrvaVijest h3{
+    margin-left: 5px;
+}
+.PrvaVijest p{
+    margin-left: 5px;
+}
+.DrugaVijest h3{
+    margin-left: 5px;
+}
+.DrugaVijest p{
+    margin-left: 5px;
 }
 .card {
     display: flex;
-    border: 1px solid var(--secondary-color, black);
+    border: 1px solid black;
     width: 100%;
-    padding: var(--padding, 0px);
-    margin-top: var(--padding, 0px);
-    color: var(--secondary-color, black);
+    margin-top: 20xpx;
+}
+.card>h3 {
+    text-align: start;
+    margin-left: 5px;
 }
 .card>p {
-    text-align: start;
-    padding-left: var(--padding, 0px);
+    text-align: left;
+    margin-left: 5px;
 }
 .aside {
-    padding: var(--padding);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
 }
 .aside__content {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
-.aside__content>div {
-    width: 100%;
-    height: 100px;
-    margin-top: var(--padding);
-    background-color: var(--complementary-color);
+.main {
+    grid-area: main;
+    border: 2px solid black;
+}
+.header {
+    grid-area: header;
+    border: 2px solid black;
+}
+.aside-right {
+    grid-area: aside;
+    border: 2px solid black;
+    background-color: palegreen;
+}
+.footer {
+    grid-area: footer;
+    border: 2px solid black;
+}
+.site {
+    grid-gap: 10px;
+    display: grid;
+    grid-template-columns: 15% 45% 25% 15%;
+    grid-template-rows: 8vh auto 8vh;
+    grid-template-areas: 
+        "header header header header"
+        ". main aside ."
+        "footer footer footer footer";
 }
 @supports (display: grid) {
-    .site {
-        grid-gap: var(--padding, 0px);
-    }
-    .header {
-        grid-area: header;
-    }
-    .main {
-        grid-area: main;
-    }
-    .aside-right {
-        grid-area: aside;
-    }
-    .footer {
-        grid-area: footer;
-    }
-}
-        @supports (display: grid) {
-            .site {
-                grid-gap: var(--padding, 0px);
-            }
-            .header {
-                grid-area: header;
-            }
-            .main {
-                grid-area: main;
-            }
-            .aside-right {
-                grid-area: aside;
-            }
-            .footer {
-                grid-area: footer;
-            }
-            @media screen and (min-width: 400px)and(max-width: 600px) {
+            @media screen and (max-width: 400px) { /*za mobitele */
                 body {
                     font-size: 24px;
                 }
-                .aside {
+                 .aside {
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: column; 
                     justify-content: space-around;
                     align-items: center;
                 }
                 .aside__content {
-                    display: grid;
-                    grid-gap: var(--padding);
-                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                    grid-gap: 10px; 
+                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+                    display: flex; 
+                    flex-direction: column; 
                     grid-auto-rows: 100px;
                     overflow-y: hidden;
                 }
@@ -114,26 +153,25 @@ body {
                 .site {
                     display: grid;
                     max-width: 1000px;
-                    grid-template-rows: auto 12em 1fr auto;
+                    grid-template-columns: 100%;
+                    grid-template-rows: 8vh;
+                    grid-template-areas: 
+                    "header"
+                    "main"
+                    "aside"
+                    "footer";
                 }
             }
             
-            @media screen and (min-width: 600px) {
+            @media screen  and (min-width: 400px) and (max-width: 1200px) { /*za tablete */
                 .site {
-                    grid-template-columns: repeat(3, 1fr);
-                    grid-template-areas:
-                        "header header header"
-                        "main main aside"
-                        "footer footer footer";
+                    display: grid;
+                    grid-template-columns: 5% 65% 25% 5%;
+                    grid-template-rows: 8vh auto 8vh;
+                    grid-template-areas: 
+                    "header header header header"
+                    ". main aside ."
+                    "footer footer footer footer";
                 }
             }
-            @media screen and (min-width: 1200px) {
-                .site {
-                    grid-template-columns: repeat(3, 1fr);
-                    grid-template-areas:
-                        "header header header"
-                        "main main aside"
-                        "footer footer aside";
-                }
-            }
-        }
+}
